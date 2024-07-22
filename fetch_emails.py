@@ -3,6 +3,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 import os.path
 import pickle
+from db_setup import Email, session
 
 # If modifying these SCOPES, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
@@ -26,8 +27,12 @@ def fetch_emails(service):
 
     for msg in messages:
         msg_data = service.users().messages().get(userId='me', id=msg['id']).execute()
+        email_id = msg_data['id']
         headers = msg_data['payload']['headers']
-        from_ = next(header['value'] for header in headers if header['name'] == 'From')
+        from_email = next(header['value'] for header in headers if header['name'] == 'From')
+        email = Email(email_id=email_id, from_email=from_email)
+        session.add(email)
+    session.commit()
 
 if __name__ == '__main__':
     service = authenticate_gmail()
