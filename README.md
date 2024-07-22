@@ -2,7 +2,7 @@
 
 1. Install required libraries:
    ```sh
-   pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+   pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib sqlalchemy
 
 2. Set up OAuth Credentials
 
