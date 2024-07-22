@@ -6,7 +6,7 @@ import pickle
 from db_setup import Email, session
 import email
 
-SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
+SCOPES = ['https://mail.google.com/', 'https://www.googleapis.com/auth/gmail.readonly']
 
 def authenticate_gmail():
     credentials = None
