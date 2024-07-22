@@ -38,6 +38,12 @@ Process emails based on rules defined
   python3 process_emails.py
 ```
 
+Run test file
+
+```bash
+  python3 test_email_processing.py
+```
+
 ## Requirements
 
 ```bash
