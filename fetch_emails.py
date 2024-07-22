@@ -20,4 +20,15 @@ def authenticate_gmail():
             pickle.dump(credentials, token)
     return build('gmail', 'v1', credentials=credentials)
 
-service = authenticate_gmail()
+def fetch_emails(service):
+    results = service.users().messages().list(userId='me', labelIds=['INBOX']).execute()
+    messages = results.get('messages', [])
+
+    for msg in messages:
+        msg_data = service.users().messages().get(userId='me', id=msg['id']).execute()
+        headers = msg_data['payload']['headers']
+        from_ = next(header['value'] for header in headers if header['name'] == 'From')
+
+if __name__ == '__main__':
+    service = authenticate_gmail()
+    fetch_emails(service)
