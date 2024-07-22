@@ -10,4 +10,4 @@
 
     ii.    [Enable](https://console.cloud.google.com/marketplace/product/google/gmail.googleapis.com) the Gmail API.
 
-    iii.    Set up OAuth2.0 credentials and download the credentials.json file - [OAuth Consent](https://console.cloud.google.com/apis/credentials/consent) Scope - `gmail.readonly`, [Credentials](https://console.cloud.google.com/apis/credentials/oauthclient)
+    iii.    Set up OAuth2.0 credentials and download the credentials.json file - [OAuth Consent](https://console.cloud.google.com/apis/credentials/consent): Scope - `gmail.readonly`; Test users: `Add tester email address`, [Credentials](https://console.cloud.google.com/apis/credentials/oauthclient): Authorized redirect URIs - `https://developers.google.com/oauthplayground`
