@@ -1,0 +1,19 @@
+{
+    "parent_condition": "Any",
+    "rules": [
+        {
+            "field": "received_date",
+            "predicate": "equal to",
+            "value": "2024-07-22"
+        }
+    ],
+    "actions": [
+        {
+            "action": "mark_as_read"
+        },
+        {
+            "action": "move_message",
+            "folder": "IMPORTANT"
+        }
+    ]
+}

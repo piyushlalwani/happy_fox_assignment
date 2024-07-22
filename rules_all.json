@@ -1,0 +1,24 @@
+{
+    "parent_condition": "All",
+    "rules": [
+        {
+            "field": "from_email",
+            "predicate": "contains",
+            "value": "hello@documint.me"
+        },
+        {
+            "field": "subject",
+            "predicate": "contains",
+            "value": "Ready To Connect Your"
+        }
+    ],
+    "actions": [
+        {
+            "action": "mark_as_read"
+        },
+        {
+            "action": "move_message",
+            "folder": "IMPORTANT"
+        }
+    ]
+}
