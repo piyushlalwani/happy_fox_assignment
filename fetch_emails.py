@@ -4,8 +4,8 @@ from googleapiclient.discovery import build
 import os.path
 import pickle
 from db_setup import Email, session
+import email
 
-# If modifying these SCOPES, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 
 def authenticate_gmail():
@@ -30,8 +30,13 @@ def fetch_emails(service):
         email_id = msg_data['id']
         headers = msg_data['payload']['headers']
         from_email = next(header['value'] for header in headers if header['name'] == 'From')
-        email = Email(email_id=email_id, from_email=from_email)
-        session.add(email)
+        subject = next(header['value'] for header in headers if header['name'] == 'Subject')
+        message = msg_data['snippet']
+        date_str = next(header['value'] for header in headers if header['name'] == 'Date')
+        received_date = email.utils.parsedate_to_datetime(date_str)
+
+        email_record = Email(email_id=email_id, from_email=from_email, subject=subject, message=message, received_date=received_date)
+        session.add(email_record)
     session.commit()
 
 if __name__ == '__main__':
