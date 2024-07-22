@@ -21,7 +21,7 @@ def authenticate_gmail():
             pickle.dump(credentials, token)
     return build('gmail', 'v1', credentials=credentials)
 
-def fetch_emails(service):
+def fetch_emails(service, session = session):
     results = service.users().messages().list(userId='me', labelIds=['INBOX']).execute()
     messages = results.get('messages', [])
 

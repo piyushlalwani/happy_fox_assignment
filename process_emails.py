@@ -59,7 +59,7 @@ def execute_actions(email_id, actions, service):
             folder_name = action['folder']
             move_message(service, email_id, folder_name)
 
-def process_emails(service, rules_config):
+def process_emails(service, rules_config, session = session):
     rules = rules_config['rules']
     parent_condition = rules_config['parent_condition']
     actions = rules_config['actions']
