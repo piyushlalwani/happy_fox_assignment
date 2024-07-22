@@ -8,6 +8,9 @@ class Email(Base):
     id = Column(Integer, primary_key=True)
     email_id = Column(String, unique=True, nullable=False)
     from_email = Column(String, nullable=False)
+    subject = Column(String)
+    message = Column(Text)
+    received_date = Column(DateTime)
 
 engine = create_engine('sqlite:///emails.db')
 Base.metadata.create_all(engine)
