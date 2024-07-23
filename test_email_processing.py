@@ -76,7 +76,7 @@ class TestEmailProcessing(unittest.TestCase):
 
         email_record_1 = self.session.query(Email).filter_by(email_id='1').first()
         self.assertIsNotNone(email_record_1)
-        self.assertEqual(email_record_1.from_email, 'AZ <az@amazon.com>')
+        self.assertEqual(email_record_1.from_email, 'az@amazon.com')
         self.assertEqual(email_record_1.subject, 'Subject 1')
         self.assertEqual(email_record_1.message, 'Message 1')
     
@@ -118,12 +118,9 @@ class TestEmailProcessing(unittest.TestCase):
         mock_service.users().messages().modify.assert_any_call(
             userId='me', id='1', body={'removeLabelIds': ['UNREAD']}
         )
-        # mock_service.users().messages().modify.assert_any_call(
-        #     userId='me', id='1', body={'removeLabelIds': ['UNREAD']}
-        # )
-        # mock_service.users().messages().modify.assert_any_call(
-        #     userId='me', id='1', body={'addLabelIds': ['TestFolder'], 'removeLabelIds': ['INBOX']}
-        # )
+        mock_service.users().messages().modify.assert_any_call(
+            userId='me', id='1', body={'addLabelIds': ['IMPORTANT'], 'removeLabelIds': ['INBOX']}
+        )
 
 if __name__ == '__main__':
     unittest.main()

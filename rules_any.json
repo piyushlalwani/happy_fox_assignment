@@ -3,8 +3,13 @@
     "rules": [
         {
             "field": "received_date",
-            "predicate": "equal to",
-            "value": "2024-07-22"
+            "predicate": "greater than",
+            "value": "2024-07-20"
+        },
+        {
+            "field": "from_email",
+            "predicate": "contains",
+            "value": "hello@documint.me"
         }
     ],
     "actions": [

@@ -20,12 +20,6 @@ Go to the project directory
   cd happy_fox_assignment
 ```
 
-Setup DB
-
-```bash
-  python3 db_setup.py
-```
-
 Fetch Emails
 
 ```bash

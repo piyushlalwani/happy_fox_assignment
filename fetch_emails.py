@@ -5,6 +5,7 @@ import os.path
 import pickle
 from db_setup import Email, session
 import email
+from helper import extract_email
 
 SCOPES = ['https://mail.google.com/', 'https://www.googleapis.com/auth/gmail.readonly']
 
@@ -29,7 +30,7 @@ def fetch_emails(service, session = session):
         msg_data = service.users().messages().get(userId='me', id=msg['id']).execute()
         email_id = msg_data['id']
         headers = msg_data['payload']['headers']
-        from_email = next(header['value'] for header in headers if header['name'] == 'From')
+        from_email = extract_email(next(header['value'] for header in headers if header['name'] == 'From'))
         subject = next(header['value'] for header in headers if header['name'] == 'Subject')
         message = msg_data['snippet']
         date_str = next(header['value'] for header in headers if header['name'] == 'Date')
@@ -38,6 +39,7 @@ def fetch_emails(service, session = session):
         email_record = Email(email_id=email_id, from_email=from_email, subject=subject, message=message, received_date=received_date)
         session.add(email_record)
     session.commit()
+    print("Fetching of records completed")
 
 if __name__ == '__main__':
     service = authenticate_gmail()

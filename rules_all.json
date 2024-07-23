@@ -2,14 +2,14 @@
     "parent_condition": "All",
     "rules": [
         {
-            "field": "from_email",
-            "predicate": "contains",
-            "value": "hello@documint.me"
+            "field": "received_date",
+            "predicate": "greater than",
+            "value": "2024-07-22"
         },
         {
-            "field": "subject",
-            "predicate": "contains",
-            "value": "Ready To Connect Your"
+            "field": "from_email",
+            "predicate": "equals",
+            "value": "hello@gravitywrite.com"
         }
     ],
     "actions": [
